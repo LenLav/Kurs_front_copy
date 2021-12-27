@@ -1,0 +1,675 @@
+// @import  "./node_modules/sass-loader/dist/cjs.js"
+
+$DarckBlue: #2a5885;
+$LightBlue: #b7c4cf;
+$Gray: #55677d;
+$margin: 16px;
+
+.color_LB{
+    color: $LightBlue !important;
+    // background: linear-gradient(45deg, #4f5c70, #2758a7);
+}
+
+.color_DB{
+    color: #2a5885;
+    // background: linear-gradient(45deg, #4f5c70, #2758a7);
+}
+
+body {
+    // background: linear-gradient(45deg, #f5f7fa, #c7d2e4);
+
+    background-image: url('~@/img/Fon11.jpg');
+    
+
+    background-position: right bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    // background-color: rgba(185, 91, 91, 0.5);
+
+    
+    font-family: Tahoma;
+    color: #b7c4cf;
+}
+
+h5{
+    color: #203649;
+}
+
+
+//.......расположение основных контейнеров и отступы сверху......//
+.home,
+.database,
+.messages {
+    // border: 1px solid orange;
+    margin-top: 40px;
+    width: 83%;
+    margin-right: auto;
+    margin-left: 17%;
+}
+
+.login,
+.EditProfil,
+.profil,
+.registration,
+.news,
+.tekhpodderzhka,
+.analytics {    
+    //  border: 1px solid rgb(0, 217, 255);
+    width: 83%;
+    margin-right: auto;
+     margin-left: 17%;
+     margin-top: 60px;
+}
+
+
+//........карусель........//
+.carousel-caption {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    z-index: 20;
+    color: rgb(255, 255, 255);
+    width: 75%;
+    height: 100%;
+}
+
+.carousel-caption div {
+    text-align: center;
+}
+
+.trickcenter {
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+//.........разделяющая линия..........//
+.hrSt {
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    width: 55%;
+    // color: #4b5a75;
+    color: $DarckBlue;
+}
+
+.Profil_info_Hr {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 40px;
+    width: 80%;
+    color: #4b5a75;
+    border-top: 1px solid #4b5a75;
+}
+
+
+//..............профиль и редактирование профиля............//
+.formaPolzovatelya {
+    background-color: #fff;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    // margin-top: 15px;
+    box-shadow: 0 5px 10px #55677d;
+     border-radius: 4px;
+    resize: none;
+}
+
+.Profil_info_blok {
+    color: black;
+    font-size: 14px;
+    text-align: left;
+    margin-left: 40px;
+    margin-bottom: 0;
+}
+
+.card {
+    background-color: #ffffff;
+    width: 55%;
+
+    margin: 100px auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+
+    box-shadow: 0 5px 10px #55677d;
+    color: #55677d;
+    border-radius: 2px;
+}
+
+.card-photo { //фото
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    border: 1px solid #818c99;
+}
+
+.containerInfo { //контейнер с информацией
+    display: flex;
+    justify-content: flex-start;
+}
+
+.razmer {// ширина блоков контейнера
+    width: 45%;
+}
+
+.infoLev{ //в профиле информация слева
+    color: #818c99;
+    font-size: 14px;
+    text-align: left;
+    margin-left: 40px;    
+}
+
+.infoPrav{  //в профиле информация справа
+    color: $DarckBlue;
+    font-size: 14px;
+    text-align: left;
+    margin-left: 40px;    
+}
+
+
+//.......Редактирование профиля......//
+.Input_edit_profil{
+    color: $DarckBlue;
+    border: none;
+    font-size: 14px;
+    vertical-align: bottom;
+}
+
+.Input_fio_edit_profil{
+    width: 90%;
+    border: none;
+    text-align: center;
+    color: #203649;
+}
+
+.Input_edit_profil:focus,
+.Input_fio_edit_profil:focus {
+    border: 1px solid #acb1b8;    
+    outline: none !important;
+}
+
+
+
+
+.TableCheck{
+    width: 100% ;
+    text-align: left;
+    font-size: 14px;
+    font-family:  Tahoma;
+  }
+  
+  .TdLev{
+    width: 50%;
+    padding-top: 10px;
+    padding-left: 40px;
+    color: #818c99;
+    // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .TdPrav{
+    width: 45%;
+    padding-top: 10px;
+    padding-right: 30px;
+    color: $DarckBlue;
+    // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+
+
+
+//.................ссылка на редактирование профиля................//
+.edit{
+    text-decoration-line: none;
+    color: #818c99;
+    font-size: 13px;
+    cursor: default;
+
+    &:hover {text-decoration-line: underline;}
+}
+
+
+.editDiv{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10%;
+}
+
+
+//..............вход и регистрация............//
+.registr {
+    background-color: #ffffff;
+    width: 55%;
+    margin: 100px auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    box-shadow: 0 5px 10px #55677d;
+    color: #55677d;
+    border-radius: 4px;
+}
+
+.podskazka { //еще не зарегистрированы?
+    color: $DarckBlue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
+
+.inpStyle {
+    width: 80%;
+}
+
+
+//.........база данных/таблица........//
+.tableContainer{ //ширина
+    width: 100%;
+    // padding-left: 2%;
+    //padding-right: 2%;
+}
+
+.tableSize{ //размер шрифта
+    font-size: 13px;
+}
+
+
+//.......кнопки........//
+.osnovnButton {
+    background-color: #e5ebf1;
+    border: none;
+    border-radius: 3px;
+    width: 170px;
+    height: 35px;
+    color: #55677d;
+    font-size: 15px;
+    margin-bottom: 15px;
+    //  margin-top: 10px;
+    // text-align: center;
+    // padding-left: 10%; 
+
+    &:hover{background-color: #c2ced8;}
+}
+
+.But_Yes{
+    background-color: rgba(0, 128, 0, 0.7);
+    color: white;
+    margin: 10px 10px 20px 10px;
+}
+
+.But_No{
+    background-color: rgba(209, 0, 0, 0.7);
+    color: white;
+    margin: 10px 10px 20px 10px;
+}
+
+
+//................заголовок регистрации.................//
+.backIcon{
+    margin-left: 50%;
+    color: #55677d;
+}
+
+table.text  {
+    width:  100%;
+    border-spacing: 0; 
+   }
+   table.text td {
+    vertical-align: top; 
+   }
+   td.rightcol { /* Правая ячейка */ 
+   width: 80%;
+    text-align: left;
+    padding-left: 15%;  
+   }
+   td.leftcol {
+       width: 20%;
+       text-align: left;
+       color: #55677d;
+   }
+
+
+
+
+
+.push{
+    position: fixed;
+    top: 80px;
+    right: 16px;
+    z-index: 1000;
+}
+
+.add_news{
+    position: fixed;
+    top: 150px;
+    right: 100px;
+    left: calc(17% + 100px);    
+    z-index: 10;
+}
+
+.push_content_true{
+    padding: 16px;
+    background-color: green;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+        }
+
+    //     .add_news_content{
+    //         // padding: 16px;
+    // background-color: rgb(226, 213, 26);
+    // border-radius: 5px;
+    // color: white;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    // height: 300px;
+    // width: 1000px;
+    //     }
+
+
+        .add_content_news{
+            // padding: 160px;
+            // background: linear-gradient(45deg, #4f5c70, #2758a7);
+            // box-shadow: 0 5px 10px #353b42;
+            background-color: white;
+            border-radius: 5px;
+            // color: white;
+            color: $DarckBlue;
+            // display: flex;
+            // justify-content: space-between;
+            align-items: center;
+            // height: 50px;
+//             -webkit-box-shadow: 4px 4px 32px 1000px rgba(0, 0, 0, 0.64);
+// -moz-box-shadow: 4px 4px 32px 1000px rgba(0, 0, 0, 0.64);
+box-shadow: 4px 4px 32px 1000px rgba(0, 0, 0, 0.7);
+            
+        }
+
+        .push_content_false{
+            padding: 16px;
+            background-color: rgb(172, 28, 28);
+            border-radius: 5px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+                }
+
+                .push_content_news{
+                    padding: 16px;
+                    // background-color: linear-gradient(45deg, #b1b7c0, #8695ad);
+                    // background-color: salmon;
+                    background: linear-gradient(45deg, #4f5c70, #2758a7);
+                    border-radius: 5px;
+                    color: white;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    height: 50px;
+                    cursor: default;
+                        }
+
+
+
+/////////////////////////////
+.block_news{
+    background-color: rgb(255, 255, 255);
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 5px;
+    
+}
+
+.block_news_P{
+    text-align: justify ;
+    padding: 0 20px 0px 20px;
+    margin-bottom: 0;
+    font-size: 15px;    
+    color: rgb(16, 16, 17);
+}
+
+.tabl_news_data_del{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    // padding: 0, auto, 10px, auto;
+    // border: 1px solid rgb(252, 101, 244);
+}
+
+.data_news{
+    font-size: 13px; 
+    // border: 1px solid orange;
+    // text-align: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.del_news{
+    font-size: 13px;
+    text-align: right;
+    color: red;
+    margin-bottom: 0;
+    margin-right: 20px;
+    cursor: default;
+
+    &:hover {
+        text-decoration-line: underline;
+        color: rgb(0, 4, 255);        
+    }
+}
+
+.HR_news{
+    color: $DarckBlue;
+}
+
+.close_icon{
+    position: fixed;
+    top: calc(10px + 150px);
+    right: 120px;
+    // left: calc(17% + 100px);    
+    z-index: 12;
+}
+
+.container_add_new{
+    width: 90%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.info_add_new{
+    width: 100%;
+    height: 150px;
+    font-size: 15px;    
+    color: rgb(16, 16, 17);
+}
+
+.Head_add_new{
+    width: 100%;
+    font-size: 15px;    
+    color: rgb(16, 16, 17);
+}
+
+.p_add_new{
+    text-align: left;
+    margin-bottom: 0;    
+    color: $Gray;
+}
+
+.h4_new{
+    // padding-top: 10px;
+    padding: 10px 20px 0px 20px;
+    color: $Gray;
+}
+
+.tekh_input{
+    width: 90%;
+    height: 150px;
+    font-size: 15px;    
+    color: rgb(16, 16, 17);
+}
+
+.container_chart{
+    // border: 1px solid orange;
+    // margin-left: auto;
+    // margin-right: auto;
+    margin: 20px auto 20px auto;
+    width: 70%;
+    // height: 300px;
+}
+
+.line_chart{
+    // border: 1px solid rgb(252, 101, 244);
+    // margin: 0 auto 0 auto ;
+    // margin-left: auto;
+    // margin-right: auto;
+    background-color: rgb(255, 255, 255);
+    
+}
+
+canvas{
+    display: block;
+    margin: 0 auto;
+}
+
+.push_edit_page_p{
+    color: white;
+    // text-align: center;
+    // vertical-align: middle;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.push_edit_page{
+    // background-color: rgba(0, 0, 0, 0.75);
+    position: fixed;
+    top: 150px;
+    right: 300px;
+    left: calc(17% + 300px);    
+    z-index: 10;
+}
+
+.push_content_page{
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.tabl_stat{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    // border: 1px solid #8fe6c1;
+}
+
+.TdLev_stat{
+    width: 45%;
+}
+
+.TdPrav_stat{
+    width: 45%;
+}
+
+.badge{
+    font-size: 13px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+body {
+    counter-reset: heading; /* Инициируем счетчик */
+   }
+   h6:before {
+    counter-increment: heading; /* Указываем идентификатор счетчика */
+    content: counter(heading); /* Выводим текст перед содержимым тега <h6> */
+   }
+
+#page {
+	counter-reset: test;
+}
+#page p::before {
+	counter-increment: test;
+	content: counter(test);
+}   
+
+.pagination_table{
+    width: 100%;
+}
+
+.pagination_table_lev{
+    text-align: left;
+    background-color: rgb(247, 170, 170);
+}
+
+.pagination_table_prav{
+    text-align: right;
+    background-color: rgb(195, 200, 120);
+}
+
+
+
+/* Кнопка выпадающего списка */
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Кнопка выпадающего меню при наведении и фокусировке */
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+  }
+  
+  /* Контейнер <div> - необходим для размещения выпадающего содержимого */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Выпадающее содержимое (скрыто по умолчанию) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Ссылки внутри выпадающего списка */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Изменение цвета выпадающих ссылок при наведении курсора */
+  .dropdown-content a:hover {background-color: #ddd}
+  
+  /* Показать выпадающее меню (используйте JS, чтобы добавить этот класс .dropdown-content содержимого, когда пользователь нажимает на кнопку выпадающего списка) */
+  .show {display:block;}
