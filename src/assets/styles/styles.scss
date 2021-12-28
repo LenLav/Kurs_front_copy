@@ -597,79 +597,100 @@ canvas{
 }
 
 
-body {
-    counter-reset: heading; /* Инициируем счетчик */
-   }
-   h6:before {
-    counter-increment: heading; /* Указываем идентификатор счетчика */
-    content: counter(heading); /* Выводим текст перед содержимым тега <h6> */
-   }
+// body {
+//     counter-reset: heading; /* Инициируем счетчик */
+//    }
+//    h6:before {
+//     counter-increment: heading; /* Указываем идентификатор счетчика */
+//     content: counter(heading); /* Выводим текст перед содержимым тега <h6> */
+//    }
 
-#page {
-	counter-reset: test;
-}
-#page p::before {
-	counter-increment: test;
-	content: counter(test);
-}   
+// #page {
+// 	counter-reset: test;
+// }
+// #page p::before {
+// 	counter-increment: test;
+// 	content: counter(test);
+// }   
 
 .pagination_table{
-    width: 100%;
+    width: 95%;
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .pagination_table_lev{
+    padding-left: 10px;
     text-align: left;
-    background-color: rgb(247, 170, 170);
+    background-color: #ecedee;
+    color: #55677d;
+
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;   
 }
 
 .pagination_table_prav{
+    padding-right: 10px;
     text-align: right;
-    background-color: rgb(195, 200, 120);
+    background-color: #ecedee;
+
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;     
+}
+
+.P_table_page{
+    padding-left: 10px;
+    text-align: left;
 }
 
 
 
-/* Кнопка выпадающего списка */
-.dropbtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Кнопка выпадающего меню при наведении и фокусировке */
-  .dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-  }
-  
-  /* Контейнер <div> - необходим для размещения выпадающего содержимого */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Выпадающее содержимое (скрыто по умолчанию) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Ссылки внутри выпадающего списка */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  /* Изменение цвета выпадающих ссылок при наведении курсора */
-  .dropdown-content a:hover {background-color: #ddd}
-  
-  /* Показать выпадающее меню (используйте JS, чтобы добавить этот класс .dropdown-content содержимого, когда пользователь нажимает на кнопку выпадающего списка) */
-  .show {display:block;}
+.class1{
+    color: #55677d;
+    background-color: transparent;
+    border-color: #9aa2af;
+
+    // &:hover,
+    // &:active{
+    //     background-color: #fff;
+    // }
+}
+
+.class1:active,
+.class1:hover{
+    background-color: #b8c4d6;
+    color: #fff;
+    border-color: #9aa2af;
+}
+
+.select_page{
+    background-color:white;
+    border-radius: 4px;
+    color: #55677d;
+    border-color: #9aa2af;
+}
+
+.btn_page{
+    margin: 1px;
+    min-width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    border: solid 1px #9aa2af;
+    color: #55677d;
+    background-color: transparent;
+    // border-color: #9aa2af;
+}
+
+.btn_page:active,
+.btn_page:hover{
+    background-color: #b8c4d6;
+    color: #fff;
+    border-color: #9aa2af;
+}
+
+.page_selected{
+    background-color: #b8c4d6;
+    color: #fff;
+    border-color: #9aa2af;
+}

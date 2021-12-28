@@ -94,11 +94,7 @@ export default new Vuex.Store({
       const { data } = await instance.post("/users/statistics", params);
       return data;
     },
-
-    // async messageCreate({ state }, params) {
-    //   const { data } = await instance.post("/message/create", params);
-    //   return data;
-    // },    
+   
   },
 
   modules: {},
