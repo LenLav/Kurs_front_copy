@@ -39,10 +39,10 @@
 
             <hr class="hrSt">
 
-            <p><input v-model="form.fio" class="inpStyle" placeholder="Фамилия Имя Отчество"> <br></p>
-            <p><input v-model="form.pasport" type="text" class="inpStyle mask-pasport" id="pasport" placeholder="Паспорт: (серия, номер)"> <br></p>
-            <p><input v-model="form.email" class="inpStyle" placeholder="Email"> <br></p>
-            <p><input maxlength="20" minlength="6" v-model="form.password" class="inpStyle" placeholder="Пароль (от 6 до 20 символов)"> <br></p>
+            <p style="padding-top: 10px; padding-bottom: 10px;"><input v-model="form.fio" class="inpStyle" placeholder="Фамилия Имя Отчество"> <br></p>
+            <p style="padding-top: 10px; padding-bottom: 10px;"><input v-model="form.pasport" type="text" class="inpStyle mask-pasport" id="pasport" placeholder="Паспорт: (серия, номер)"> <br></p>
+            <p style="padding-top: 10px; padding-bottom: 10px;"><input v-model="form.email" class="inpStyle" placeholder="Email"> <br></p>
+            <p style="padding-top: 10px; padding-bottom: 10px;"><input maxlength="20" minlength="6" v-model="form.password" class="inpStyle" placeholder="Пароль (от 6 до 20 символов)"> <br></p>
 
             <!-- <form action="profil" style="padding-bottom: 20px;">
             <button type="submit" class="btn btn-outline-success">Зарегистрироваться</button>

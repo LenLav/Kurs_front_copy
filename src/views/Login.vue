@@ -27,8 +27,8 @@
         <b>
             <hr class="hrSt"></b>
 
-        <p><input v-model="form.email" style="width:50%" placeholder="Email" > <br></p>
-        <p><input v-model="form.password" type="password" style="width:50%" placeholder="Пароль"> <br></p>
+        <p><input v-model="form.email" style="width:50%; " placeholder="Email" > <br></p>
+        <p style="padding-top: 10px; padding-bottom: 10px;"><input v-model="form.password" type="password" style="width:50%;" placeholder="Пароль"> <br></p>
         
         <p><button type="button" class="osnovnButton" @click="vhod()">Войти</button> <br></p>
         

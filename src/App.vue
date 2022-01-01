@@ -1,12 +1,12 @@
 <template>
 <body>
     
-    <div v-show="OK_TRUE" class="push">
+    <div v-show="push" class="push">
         <div class="push_content">
 
             <div id="text_push_id" class="push_content_true">
-                <span>{{info_push}}</span>
-                <i class="bi bi-x-circle" style="padding-left: 10px;" @click="OK_TRUE = !OK_TRUE"></i>
+                <span>{{info}}</span>
+                <i class="bi bi-x-circle" style="padding-left: 10px;" @click="push = !push"></i>
             </div>
         </div>
     </div>
@@ -154,9 +154,18 @@ export default class Home extends Vue {
         };
     }
 
+    push=""
+    info=""
+
     async mounted() {
         this.token = localStorage.token;
-        console.log(this.token);
+        this.push = localStorage.push;
+        this.info = localStorage.Local_info_push;
+        // console.log(this.token);
+        console.log(localStorage.Local_info_push);
+
+        
+        console.log(localStorage.push);
 
         this.token = localStorage.token;
         const result = await this.$store.dispatch("me_inform");

@@ -31,6 +31,8 @@
                 Форма добавления сотрудника<i class="bi bi-x-lg close_icon" style="top: 60px" @click="add_person_TRUE = !add_person_TRUE"></i>
             </h4>
 
+            <hr>
+
             <div class="container_add_new">
                 <table class="TableCheck">
                     <tr>
@@ -104,7 +106,7 @@
                         </td>
                     </tr>
                 </table>
-                <div class="custom-control custom-checkbox">
+                <div class="custom-control custom-checkbox" style="padding-top: 15px; padding-bottom: 15px;">
                     <input type="checkbox" class="custom-control-input" id="check_id" />
                     <label class="custom-control-label" for="defaultUnchecked">Является аминистратором</label>
                 </div>
@@ -118,8 +120,103 @@
         </div>
     </div>
 
+    <div v-show="edit_person_TRUE" class="add_news" style="top: 50px">
+        <div class="add_content_news">
+            <h4 class="h4_new">
+                Редактирование информации о сотруднике<i class="bi bi-x-lg close_icon" style="top: 60px" @click="edit_person_TRUE = !edit_person_TRUE"></i>
+            </h4>
+
+            <hr>
+
+            <div class="container_add_new">
+                <table class="TableCheck">
+                    <tr>
+                        <td class="TdLev">Фамилия Имя Отчество</td>
+                        <td class="TdPrav">
+                            <input v-model="person.fio" type="text" style="width: 80%" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TdLev">Должность</td>
+                        <td class="TdPrav">
+                            <select v-model="person.job" selected="selected_JOB" style="width: 80%">
+                                <option v-for="option in options_JOB" :value="option.text" :key="option.text">
+                                    {{ option.text }}
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TdLev">Паспортные данные</td>
+                        <td class="TdPrav">
+                            <input v-model="person.pasport" type="text" placeholder="xx xx xxxx" style="width: 80%" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TdLev">Дата рождения</td>
+                        <td class="TdPrav">
+                            <input v-model="person.birthday" type="date" style="width: 80%" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TdLev">Пол</td>
+                        <td class="TdPrav">
+                            <select v-model="person.male" selected="selected_MALE" style="width: 80%">
+                                <option v-for="option in options_MALE" :value="option.text" :key="option.text">
+                                    {{ option.text }}
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TdLev">Заработная плата</td>
+                        <td class="TdPrav">
+                            <input v-model="person.salary" type="number" style="width: 80%" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TdLev">Дата приема на работу:</td>
+                        <td class="TdPrav">
+                            <input v-model="person.date_of_receipt" type="date" style="width: 80%" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TdLev">Семейное положение:</td>
+                        <td class="TdPrav">
+                            <select v-model="person.marital_status" selected="selected_MARITAL_STATUS" style="width: 80%">
+                                <option v-for="option in options_MARITAL_STATUS" :value="option.text" :key="option.text">
+                                    {{ option.text }}
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TdLev">Количество детей:</td>
+                        <td class="TdPrav">
+                            <select v-model="person.amount_of_children" selected="selected_AMOUNT_OF_CHILDREN" style="width: 80%">
+                                <option v-for="option in options_AMOUNT_OF_CHILDREN" :value="option.text" :key="option.text">
+                                    {{ option.text }}
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <div class="custom-control custom-checkbox" style="padding-top: 15px; padding-bottom: 15px;">
+                    <input type="checkbox" class="custom-control-input" id="edit_checkbox" />
+                    <label class="custom-control-label" for="defaultUnchecked">Является администратором</label>
+                </div>
+            </div>
+
+            <p>
+                <button type="button" class="osnovnButton" style="" @click="save_edit_person()">
+                    Сохранить изменения
+                </button>
+            </p>
+        </div>
+    </div>
+
     <div class="database">
-        <h1 class="color_LB">Список сотрудников</h1>
+        <h2 class="color_LB">Список сотрудников</h2>
 
         <div class="tableContainer">
             <table id="myTable" class="
@@ -131,14 +228,37 @@
                     <tr class="tableSize">
                         <th scope="col">id</th>
                         <th v-show="ADMIN" scope="col"></th>
-                        <th scope="col">ФИО</th>
+
+                        <th scope="col" @click="SortByName()">ФИО
+                            <i v-if="countName % 2 != 0 && countName != 0" class="bi bi-sort-alpha-down"></i>
+                            <i v-else-if="countName % 2 == 0 && countName != 0" class="bi bi-sort-alpha-down-alt"></i>
+                            <i v-else class="bi bi-arrow-down-up" style="color: gray;"></i>
+                        </th>
+
                         <th v-show="ADMIN" scope="col">Паспорт</th>
-                        <th scope="col">Дата рождения</th>
-                        <th scope="col">Пол</th>
-                        <th scope="col">Должность</th>
+                        <th scope="col" @click="SortByBirthday()">Дата рождения</th>
+
+                        <th scope="col" @click="SortByMale()">Пол
+                            <i v-if="countMale % 2 != 0 && countMale != 0" class="bi bi-sort-alpha-down"></i>
+                            <i v-else-if="countMale % 2 == 0 && countMale != 0" class="bi bi-sort-alpha-down-alt"></i>
+                            <i v-else class="bi bi-arrow-down-up" style="color: gray;"></i>
+                        </th>
+
+                        <th scope="col" @click="SortByJob()">Должность
+                            <i v-if="countJob % 2 != 0 && countJob != 0" class="bi bi-sort-alpha-down"></i>
+                            <i v-else-if="countJob % 2 == 0 && countJob != 0" class="bi bi-sort-alpha-down-alt"></i>
+                            <i v-else class="bi bi-arrow-down-up" style="color: gray;"></i>
+                        </th>
+
                         <th v-show="ADMIN" scope="col">Дата приема на работу</th>
                         <th v-show="ADMIN" scope="col">Дата увольнения</th>
-                        <th v-show="ADMIN" scope="col">З/п</th>
+
+                        <th v-show="ADMIN" scope="col" @click="SortBySalary()">З/п
+                            <i v-if="countSalary % 2 != 0 && countSalary != 0" class="bi bi-sort-down-alt"></i>
+                            <i v-else-if="countSalary % 2 == 0 && countSalary != 0" class="bi bi-sort-down"></i>
+                            <i v-else class="bi bi-arrow-down-up" style="color: gray;"></i>
+                        </th>
+
                         <th v-show="ADMIN" scope="col">Семейное положение</th>
                         <th v-show="ADMIN" scope="col">Дети</th>
                         <th v-show="ADMIN" scope="col">Логин</th>
@@ -147,9 +267,11 @@
                 <tbody>
                     <tr class="tableSize" v-for="user in users_slice" :key="user.id">
                         <td class="align-middle">{{ user.id }}</td>
+
                         <td v-show="ADMIN" class="align-middle">
-                            <i class="bi bi-pencil-fill" @click="userEdit(user.id)"></i>
+                            <i class="bi bi-pencil-fill pencil_hover" @click="userEdit(user.id)" style="font-size: 16px;"></i>
                         </td>
+
                         <td class="align-middle">
                             {{ user.fio }}
                             <i v-show="user.isAdmin" class="bi bi-check-circle" style="color: green" data-bs-toggle="tooltip" title="Администратор"></i>
@@ -203,9 +325,11 @@
                         </select>
                     </td>
                     <td class="pagination_table_prav" id="btn_page">
+                        <button class="btn_page" @click="previous()"><i class="bi bi-caret-left"></i></button>
                         <button v-for="page in this.kolvo_pages" :key="page" class="btn_page" @click="change_page(page)" :class="{ 'page_selected': page === pageNumber }">
                             {{ page }}
                         </button>
+                        <button class="btn_page" @click="next()" id="btn_next"><i class="bi bi-caret-right"></i></button>
                     </td>
                 </tr>
 
@@ -244,6 +368,7 @@ export default class Home extends Vue {
             OK_FALSE: false,
             ADMIN: false,
             add_person_TRUE: false,
+            edit_person_TRUE: false,
             user_isAdmin: false,
             status: "",
 
@@ -315,6 +440,9 @@ export default class Home extends Vue {
                     text: "менеджер по персоналу",
                 },
                 {
+                    text: "слесарь",
+                },
+                {
                     text: "электрослесарь",
                 },
                 {
@@ -328,6 +456,9 @@ export default class Home extends Vue {
                 },
                 {
                     text: "контролер",
+                },
+                {
+                    text: "заведующий хозяйством",
                 },
             ],
 
@@ -378,14 +509,20 @@ export default class Home extends Vue {
     };
 
     async mounted() {
+        console.log(new Date("01.01.1929").getTime())
+
         this.token = localStorage.token;
         const result = await this.$store.dispatch("usersList");
+        console.log(result)
         this.users = result.data;
+        console.log(result.data)
+        console.log(result.data.id)
+        console.log(result.data[3].date_of_dismissal)
 
         this.func_me_inf();
 
         await this.pagination();
-        await this.selected_page();
+        // await this.selected_page();
     }
 
     kolvo_lines = 10;
@@ -397,6 +534,7 @@ export default class Home extends Vue {
 
     async pagination() {
         // await this.selected_page()
+        await this.reset_sorting()
 
         this.kolvo_pages = Math.ceil(this.users.length / this.kolvo_lines);
 
@@ -414,48 +552,243 @@ export default class Home extends Vue {
         await this.pagination();
     }
 
-    async selected_page() {
-        for (let i = 1; i <= this.kolvo_pages; i++) {
-            var id = "page" + i;
-            var checked_page = ( < HTMLInputElement > document.getElementById(id))
-                .checked;
-            if (checked_page === true) {
-                this.pageNumber = i;
-                await this.pagination();
-                console.log(id);
-                return;
-            }
-        }
-    }
-
-    
-
     async change_lines() {
         console.log("проверка " + this.kolvo_lines);
-        
-        // this.kolvo_pages = Math.ceil(this.users.length / this.kolvo_lines);
-
-        // if ((this.kolvo_lines == 5) || (this.kolvo_lines == 10) || (this.kolvo_lines == 15) || (this.kolvo_lines == 20) || (this.kolvo_lines == this.users.length)) {
-        //     this.kolvo_pages = Math.ceil(this.users.length / this.kolvo_lines);
-        // } else {
-        //     this.kolvo_lines = this.users.length
-        //     this.kolvo_pages = Math.ceil(this.users.length / this.kolvo_lines);
-        //     // var option_all = ( < HTMLInputElement > document.getElementById("option_all"))
-        //     // option_all
-        //     // console.log(option_all)            
-        // }
 
         this.kolvo_pages = Math.ceil(this.users.length / this.kolvo_lines);
-
-        // if(this.kolvo_lines == 5){
-        //     alert(this.kolvo_lines)
-        // }
 
         this.pageNumber = 1;
         console.log("количество страниц " + this.kolvo_pages);
 
         await this.pagination();
     }
+
+    async next() {
+        this.pageNumber++
+        if (this.pageNumber > this.kolvo_pages) {
+            this.pageNumber--
+            console.log(this.pageNumber)
+            return
+        }
+        console.log(this.pageNumber)
+        await this.pagination();
+    }
+
+    async previous() {
+        this.pageNumber--
+        if (this.pageNumber < 1) {
+            this.pageNumber++
+            console.log(this.pageNumber)
+            return
+        }
+        console.log(this.pageNumber)
+        await this.pagination();
+    }
+
+    /////////////////сортировка/////////////////////
+    countName = 0
+    async SortByName() {
+        this.countMale = 0
+        this.countJob = 0
+        this.countSalary = 0
+
+        if (this.countName % 2 == 0) {
+            this.users_slice.sort((a, b) => a.fio.localeCompare(b.fio))
+        } else {
+            this.users_slice.reverse();
+        }
+
+        this.countName++
+    }
+
+    countMale = 0
+    async SortByMale() {
+        this.countName = 0
+        this.countJob = 0
+        this.countSalary = 0
+
+        if (this.countMale % 2 == 0) {
+            this.users_slice.sort((a, b) => a.male.localeCompare(b.male))
+        } else {
+            this.users_slice.reverse();
+        }
+
+        this.countMale++
+    }
+
+    countJob = 0
+    async SortByJob() {
+        this.countName = 0
+        this.countMale = 0
+        this.countSalary = 0
+
+        if (this.countJob % 2 == 0) {
+            this.users_slice.sort((a, b) => a.job.localeCompare(b.job))
+        } else {
+            this.users_slice.reverse();
+        }
+
+        this.countJob++
+    }
+
+    countSalary = 0
+    async SortBySalary() {
+        this.countName = 0
+        this.countMale = 0
+        this.countJob = 0
+
+        if (this.countSalary % 2 == 0) {
+            this.users_slice.sort(function (a, b) {
+                return a.salary - b.salary
+            })
+        } else {
+            this.users_slice.reverse();
+        }
+
+        this.countSalary++
+    }
+
+    countBirthday = 0
+    async SortByBirthday() {
+        this.countName = 0
+        this.countMale = 0
+        this.countJob = 0
+
+        if (this.countBirthday % 2 == 0) {
+            alert(new Date(a.birthday).getTime())
+            var dateA = new Date(a.birthday).getTime();
+            var dateB = new Date(b.birthday).getTime();
+            
+            return dateA - dateB;
+
+            // this.users_slice.sort(function (a, b) {
+            //     var c = new Date(a.birthday);
+            //     var d = new Date(b.birthday);
+            //     return c - d;
+
+                // return new Date(a.birthday) - new Date(b.birthday);
+            // });
+
+        } else {
+            this.users_slice.reverse();
+        }
+
+        this.countBirthday++
+    }
+
+    async reset_sorting() {
+        this.countName = 0
+        this.countMale = 0
+        this.countJob = 0
+        this.countSalary = 0
+    }
+
+    ////////////редактирование///////////////
+    edit_person_TRUE = false
+    person_fio = ''
+    person_job = ''
+    person_salary = ''
+    person_pasport = ''
+    person_marital_status = ''
+    person_male = ''
+    person_date_of_receipt = ''
+    person_birthday = ''
+    person_amount_of_children = ''
+
+    ID_edit_person = ''
+
+    person = {
+        fio: "",
+        pasport: "",
+        birthday: "",
+        male: "",
+        job: "",
+        date_of_receipt: "",
+        salary: "",
+        marital_status: "",
+        amount_of_children: "",
+        isAdmin: false
+    };
+
+    async userEdit(id: any) {
+        this.ID_edit_person = id
+
+        const result = await this.$store.dispatch("inform_person", id);
+        console.log(result)
+
+        this.edit_person_TRUE = true
+
+        this.person.fio = result.fio
+        this.person.job = result.job
+        this.person.salary = result.salary
+        this.person.pasport = result.pasport
+        this.person.marital_status = result.marital_status
+        this.person.male = result.male
+        this.person.amount_of_children = result.amount_of_children
+
+        var poi = result.date_of_receipt.split(".")
+        this.person.date_of_receipt = poi[2] + '-' + poi[1] + '-' + poi[0]
+
+        var poi2 = result.birthday.split(".")
+        this.person.birthday = poi2[2] + '-' + poi2[1] + '-' + poi2[0]
+
+        console.log(this.person_date_of_receipt)
+        console.log(this.person_birthday)
+
+        if (result.isAdmin == true) {
+            ( < HTMLInputElement > (document.getElementById("edit_checkbox"))).checked = true;
+            ( < HTMLInputElement > (document.getElementById("edit_checkbox"))).disabled = true;
+        } else {
+            ( < HTMLInputElement > (document.getElementById("edit_checkbox"))).checked = false;
+            ( < HTMLInputElement > (document.getElementById("edit_checkbox"))).disabled = false;
+        }
+
+        // alert("2017.07.04".replace(/\./g, "-"));
+
+    }
+
+    async save_edit_person() {
+        var poi = this.person.date_of_receipt.split("-")
+        this.person.date_of_receipt = poi[2] + '.' + poi[1] + '.' + poi[0]
+
+        var poi2 = this.person.birthday.split("-")
+        this.person.birthday = poi2[2] + '.' + poi2[1] + '.' + poi2[0]
+
+        this.person.isAdmin = ( < HTMLInputElement > (document.getElementById("edit_checkbox"))).checked;
+
+        // console.log(poi)
+
+        console.log(this.person)
+
+        const result = await this.$store.dispatch("edit_inform_person", {
+            params: this.ID_edit_person,
+            form: this.person
+        });
+        console.log(result)
+
+        if (result.success === true) {
+            this.OK_TRUE = true;
+            this.info_push = "Изменения успешно внесены";
+            this.edit_person_TRUE = false;
+
+            let vm = this;
+            setTimeout(function () {
+                vm.OK_TRUE = false;
+                window.location.reload();
+            }, 2000);
+        } else {
+            this.OK_FALSE = true;
+            this.info_push = result.message;
+
+            let vm = this;
+            setTimeout(function () {
+                vm.OK_FALSE = false;
+            }, 4000);
+        }
+
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     async func_me_inf() {
         const result = await this.$store.dispatch("me_inform");
@@ -479,15 +812,14 @@ export default class Home extends Vue {
         console.log(result.date_of_dismissal);
     }
 
-    // async userDelete(id: any) {
-    //     alert(`Удаление пользователя id:${id}`);
-    //     // this.$router.push("/");
-    // }
-
     async add_person() {
-        this.form.isAdmin = ( < HTMLInputElement > (
-            document.getElementById("check_id")
-        )).checked;
+        var poi = this.form.date_of_receipt.split("-")
+        this.form.date_of_receipt = poi[2] + '.' + poi[1] + '.' + poi[0]
+
+        var poi2 = this.form.birthday.split("-")
+        this.form.birthday = poi2[2] + '.' + poi2[1] + '.' + poi2[0]
+
+        this.form.isAdmin = ( < HTMLInputElement > (document.getElementById("check_id"))).checked;
         console.log(this.form);
         // const result = await this.$store.dispatch("create_person", this.form);
 

@@ -12,15 +12,35 @@ instance.defaults.headers.common[
   "Authorization"
 ] = `Bearer ${localStorage.token}`;
 
+instance.defaults.headers.common[
+  "push"
+] = `Bearer ${localStorage.push}`;
+
+instance.defaults.headers.common[
+  "info_push"
+] = `Bearer ${localStorage.Local_info_push}`;
+
 export default new Vuex.Store({
   state: {
     token: localStorage.token,
+    push: localStorage.push,
+    Local_info_push : localStorage.Local_info_push,
   },
 
   mutations: {
     setToken(state, value) {
       localStorage.token = value;
       instance.defaults.headers.common["Authorization"] = `Bearer ${value}`;
+    },
+
+    setPush(state, value) {
+      localStorage.push = value;
+      instance.defaults.headers.common["push"] = `Bearer ${value}`;
+    },
+
+    setInfoPush(state, value) {
+      localStorage.Local_info_push = value;
+      instance.defaults.headers.common["info_push"] = `Bearer ${value}`;
     },
   },
 
@@ -94,6 +114,33 @@ export default new Vuex.Store({
       const { data } = await instance.post("/users/statistics", params);
       return data;
     },
+
+    async inform_person({ state, commit, rootState }, params) {
+      const url = "/users/inform/" + params
+      const { data } = await instance.get(url);
+      return data;
+    },
+
+    async edit_inform_person({ state, commit, rootState }, {params, form}) {
+      const url = "/users/full_update/" + params
+      const { data } = await instance.put(url, form);
+      return data;
+    },
+
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    async show_push({ state, commit, rootState }, params) {
+      // const { data } = await instance.post("/users/statistics", params);
+      commit("setPush", params);
+      return params;
+    },
+
+    async add_info_push({ state, commit, rootState }, params) {
+      // const { data } = await instance.post("/users/statistics", params);
+      commit("setInfoPush", params);
+      return params;
+    },
+   
    
   },
 
